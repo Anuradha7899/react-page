@@ -1,0 +1,92 @@
+---------------DAY ONE
+//*First Component in Detail
+// capital letter
+// must return something
+//JSX syntax (return html)
+// to make our easier to right
+// backend it is calling function
+
+//* JSX RUles
+//return single element (one parent element)
+// semantics el -> section , article, header, footer
+// react fragment -><React.Fragment><React.Fragment ><> </>
+/** @format */
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+//css
+import './index.css';
+//booksArr
+const books = [
+  {
+    author: 'James Clear',
+    title: 'Atomic Habits',
+    img: './imeges/Atomic Habits.jpg',
+  },
+
+  {
+    author: 'Francesc Miralles',
+    title: 'Ikigai',
+    img: 'https://m.media-amazon.com/images/I/814L+vq01mL._SY466_.jpg',
+  },
+  {
+    author: 'Morgan Housel',
+    title: 'The Psychology of Money',
+    img: 'https://m.media-amazon.com/images/I/61-hMfd7NGL._SY466_.jpg',
+  },
+];
+
+const BookList = () => {
+  function handelClick(valve) {
+    console.log(valve);
+  }
+  return (
+    <>
+      <header>
+        <h1>Best Seller Books</h1>
+      </header>
+      <section className='booklist'>
+        {books.map((book, index) => {
+          return (
+            <Book
+              key={index}
+              {...book}
+              handelClick={handelClick}
+            />
+          );
+          return;
+          <Book
+            key={index}
+            author={book.author}
+            title={book.title}
+            img={book.img}
+          />;
+        })}
+      </section>
+    </>
+  );
+};
+
+const Book = (props) => {
+  const { title, author, img, handelClick } = props;
+  return (
+    <article className='book'>
+      <img
+        src={img}
+        alt={title}
+      />
+      <h2>{title}</h2>
+      <button
+        onClick={() => {
+          handelClick(title);
+        }}
+      >
+        alert title
+      </button>
+      <h4>{author}</h4>
+    </article>
+  );
+};
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(<BookList />);
